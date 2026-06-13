@@ -1,0 +1,1580 @@
+/* ===== AUTH (Supabase) ===== */
+/* Hide protected nav items by default — JS will show them after login */
+.nav-auth-only {
+    display: none;
+}
+body.is-authenticated .nav-auth-only {
+    display: list-item;
+}
+/* Profile logout button hidden by default */
+body:not(.is-authenticated) #profile-logout-btn {
+    display: none;
+}
+
+.account-widget {
+    display: none;
+}
+
+/* Hero secondary login link */
+.hero-login-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    min-height: 52px;
+    padding: 0 24px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    color: #fff;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 750;
+    cursor: pointer;
+    transition: transform 0.2s, background 0.2s, border-color 0.2s;
+    font-family: inherit;
+    line-height: 1;
+}
+
+.hero-login-btn:hover {
+    background: rgba(255, 255, 255, 0.12);
+    border-color: rgba(255, 255, 255, 0.45);
+    transform: translateY(-2px);
+}
+
+@media (max-width: 520px) {
+    .hero-actions {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .hero-cta,
+    .hero-login-btn {
+        width: 100%;
+    }
+}
+
+/* Gold accent trial: home page only */
+#home-page {
+    --gold: #f6c75e;
+    --gold-bright: #ffe49a;
+    --gold-deep: #9b641b;
+    --gold-soft: rgba(246, 199, 94, 0.16);
+    --gold-line: rgba(246, 199, 94, 0.34);
+}
+
+#home-page .hero h1 {
+    color: #fff7df;
+    text-shadow: 0 3px 18px rgba(246, 199, 94, 0.16), 0 2px 10px rgba(0, 0, 0, 0.55);
+}
+
+#home-page .hero h1::after {
+    content: '';
+    display: block;
+    width: 92px;
+    height: 3px;
+    margin-top: 18px;
+    border-radius: 999px;
+    background: linear-gradient(90deg, var(--gold-bright), rgba(246, 199, 94, 0));
+    box-shadow: 0 0 24px rgba(246, 199, 94, 0.35);
+}
+
+#home-page .hero-cta {
+    background: linear-gradient(135deg, #fff3bd 0%, var(--gold) 45%, #bd7d24 100%);
+    border-color: rgba(255, 228, 154, 0.85);
+    color: #17110a;
+    box-shadow: 0 14px 32px rgba(246, 199, 94, 0.24), inset 0 1px 0 rgba(255, 255, 255, 0.45), inset 0 -1px 0 rgba(65, 38, 8, 0.22);
+}
+
+#home-page .hero-cta:hover {
+    box-shadow: 0 20px 44px rgba(246, 199, 94, 0.34), inset 0 1px 0 rgba(255, 255, 255, 0.5), inset 0 -1px 0 rgba(65, 38, 8, 0.22);
+}
+
+#home-page .hero-cta .hero-btn-icon {
+    background: rgba(40, 25, 5, 0.16);
+    color: #1b1207;
+}
+
+#home-page .hero-login-btn {
+    background: rgba(246, 199, 94, 0.06);
+    border-color: rgba(246, 199, 94, 0.32);
+    color: #fff1c7;
+}
+
+#home-page .hero-login-btn:hover {
+    background: rgba(246, 199, 94, 0.12);
+    border-color: rgba(246, 199, 94, 0.58);
+}
+
+#home-page .hero-login-btn .hero-btn-icon {
+    background: rgba(246, 199, 94, 0.14);
+    color: var(--gold-bright);
+}
+
+#home-page .hero-cta:focus-visible,
+#home-page .hero-login-btn:focus-visible {
+    outline-color: var(--gold-bright);
+}
+
+#home-page .season-banner {
+    position: relative;
+    background: linear-gradient(145deg, rgba(246, 199, 94, 0.09), rgba(255, 255, 255, 0.035) 42%, rgba(0, 0, 0, 0.18));
+    border-color: rgba(246, 199, 94, 0.24);
+    border-radius: 12px;
+    padding: 22px;
+    box-shadow: 0 14px 34px rgba(0, 0, 0, 0.24), inset 0 1px 0 rgba(255, 228, 154, 0.12);
+    overflow: hidden;
+}
+
+#home-page .season-banner::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 18px;
+    bottom: 18px;
+    width: 3px;
+    border-radius: 0 999px 999px 0;
+    background: linear-gradient(180deg, var(--gold-bright), var(--gold-deep));
+}
+
+#home-page .season-banner-top {
+    gap: 12px;
+}
+
+#home-page .season-banner-icon {
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(246, 199, 94, 0.12);
+    border: 1px solid rgba(246, 199, 94, 0.22);
+    font-size: 20px;
+    filter: none;
+}
+
+#home-page .season-banner-desc {
+    color: rgba(255, 255, 255, 0.66);
+    font-size: 13px;
+    line-height: 1.55;
+}
+
+#home-page .season-banner-title,
+#home-page .countdown-value,
+#home-page .showcase-game-tag,
+#home-page .feature-col-num {
+    color: var(--gold-bright);
+}
+
+#home-page .countdown-box {
+    background: rgba(0, 0, 0, 0.24);
+    border-color: rgba(246, 199, 94, 0.18);
+    border-radius: 7px;
+    padding: 10px 8px;
+}
+
+#home-page .countdown-label {
+    color: rgba(255, 228, 154, 0.56);
+    letter-spacing: 0.6px;
+}
+
+#home-page .showcase-title,
+#home-page .features-section-title {
+    color: #fff4d4;
+}
+
+#home-page .showcase-tile {
+    border: 1px solid rgba(246, 199, 94, 0.12);
+}
+
+#home-page .showcase-tile:hover {
+    box-shadow: 0 18px 46px rgba(0, 0, 0, 0.58), 0 0 0 1px rgba(246, 199, 94, 0.28);
+}
+
+#home-page .showcase-overlay {
+    background: linear-gradient(0deg, rgba(9, 6, 2, 0.94) 0%, rgba(23, 15, 5, 0.58) 52%, rgba(0, 0, 0, 0.12) 100%);
+}
+
+#home-page .showcase-badge {
+    background: linear-gradient(135deg, #fff0b2, var(--gold) 55%, #b87722);
+    color: #1a1207;
+    box-shadow: 0 8px 20px rgba(246, 199, 94, 0.26);
+}
+
+#home-page .showcase-footer,
+#home-page .feature-col {
+    background: linear-gradient(145deg, rgba(246, 199, 94, 0.075), rgba(255, 255, 255, 0.028));
+    border-color: rgba(246, 199, 94, 0.16);
+}
+
+#home-page .showcase-cta {
+    background: linear-gradient(135deg, #fff0b2, var(--gold));
+    color: #17110a;
+}
+
+#home-page .showcase-cta:hover,
+#home-page .feature-col:hover {
+    border-color: rgba(246, 199, 94, 0.38);
+    box-shadow: 0 14px 32px rgba(0, 0, 0, 0.28), 0 0 0 1px rgba(246, 199, 94, 0.09);
+}
+
+#home-page .how-it-works {
+    padding: 0 0 28px;
+}
+
+#home-page .how-it-works-header {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    gap: 18px;
+    margin-bottom: 14px;
+}
+
+#home-page .how-it-works-title {
+    color: #fff4d4;
+    font-size: 18px;
+    font-weight: 800;
+    margin: 0;
+}
+
+#home-page .how-it-works-subtitle {
+    color: rgba(255, 255, 255, 0.52);
+    font-size: 13px;
+    line-height: 1.45;
+    margin: 0;
+    max-width: 420px;
+}
+
+#home-page .how-steps {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px;
+}
+
+#home-page .how-step {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 10px;
+    align-items: start;
+    min-height: 0;
+    padding: 14px 15px;
+    text-align: left;
+    position: relative;
+    transform: none;
+    border: 1px solid rgba(246, 199, 94, 0.15);
+    border-radius: 9px;
+    background: linear-gradient(145deg, rgba(246, 199, 94, 0.06), rgba(255, 255, 255, 0.025));
+    backdrop-filter: none;
+    transition: border-color 0.2s, background 0.2s;
+}
+
+#home-page .how-step:hover {
+    transform: none;
+    border-color: rgba(246, 199, 94, 0.28);
+    background: linear-gradient(145deg, rgba(246, 199, 94, 0.08), rgba(255, 255, 255, 0.03));
+}
+
+#home-page .how-step-num {
+    position: static;
+    top: auto;
+    left: auto;
+    transform: none;
+    width: 30px;
+    height: 30px;
+    border-radius: 8px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #1a1207;
+    background: linear-gradient(135deg, #fff0b2, var(--gold));
+    font-size: 11px;
+    font-weight: 900;
+    flex: 0 0 auto;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+#home-page .how-step-title {
+    color: #fff;
+    font-size: 13px;
+    font-weight: 750;
+    line-height: 1.25;
+    margin: 0 0 4px;
+}
+
+#home-page .how-step-desc {
+    color: rgba(255, 255, 255, 0.58);
+    font-size: 12px;
+    line-height: 1.4;
+    margin: 0;
+}
+
+@media (max-width: 760px) {
+    #home-page .how-it-works-header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    #home-page .how-steps {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Global gold accent theme */
+:root {
+    --gold: #f6c75e;
+    --gold-bright: #ffe49a;
+    --gold-deep: #9b641b;
+    --gold-soft: rgba(246, 199, 94, 0.12);
+    --gold-line: rgba(246, 199, 94, 0.28);
+    --gold-strong-line: rgba(246, 199, 94, 0.48);
+}
+
+.nav-links a:hover,
+.nav-links a.active,
+.filter-group h4,
+.quests-filters .filter-group h4,
+.section-title,
+.settings-section h3,
+.stats-section-title,
+.quest-modal-title,
+.achievements-modal-header h2,
+.friends-modal-header h2,
+.auth-title,
+#auth-title {
+    color: #fff4d4;
+}
+
+.nav-links a.active {
+    text-shadow: 0 0 18px rgba(246, 199, 94, 0.22);
+}
+
+.filter-option input[type="radio"],
+.filter-option input[type="checkbox"],
+.quest-filter,
+input[type="checkbox"],
+input[type="radio"] {
+    accent-color: var(--gold);
+}
+
+.progress-fill,
+.welcome-progress-fill,
+.qs-progress-fill,
+.quest-progress-fill,
+.am-progress-fill,
+.xp-bar-fill,
+.profile-xp-fill,
+.season-progress-fill {
+    background: linear-gradient(90deg, var(--gold-bright), var(--gold)) !important;
+}
+
+.showcase-badge,
+.hht-badge,
+.home-card-badge,
+.completed-badge,
+.filter-count-badge,
+.friends-count-badge,
+.fm-tab-count,
+.profile-rank-badge,
+.rank-badge,
+.achievement-rarity-label {
+    border-color: rgba(246, 199, 94, 0.25);
+}
+
+.showcase-cta,
+.auth-submit,
+.add-friend-btn,
+.upload-pic-btn,
+.save-btn,
+.gb-send-btn,
+.quest-results-btn,
+.quest-finish-btn,
+.play-quest-btn:not(.completed) {
+    background: linear-gradient(135deg, #fff0b2, var(--gold) 55%, #bd7d24);
+    border: 1px solid rgba(255, 228, 154, 0.58);
+    color: #17110a;
+    box-shadow: 0 10px 24px rgba(246, 199, 94, 0.14), inset 0 1px 0 rgba(255, 255, 255, 0.35);
+}
+
+.showcase-cta:hover,
+.auth-submit:hover,
+.add-friend-btn:hover,
+.upload-pic-btn:hover,
+.save-btn:hover,
+.gb-send-btn:hover,
+.quest-results-btn:hover,
+.quest-finish-btn:hover,
+.play-quest-btn:not(.completed):hover {
+    background: linear-gradient(135deg, #fff5c7, #f6c75e 55%, #c88627);
+    box-shadow: 0 14px 30px rgba(246, 199, 94, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.42);
+}
+
+.login-btn,
+.cancel-btn,
+.qs-reset-btn,
+.home-expand-btn,
+.auth-tab,
+.am-tab,
+.fm-tab,
+.gb-sort-btn,
+.settings-nav-item,
+.quest-modal-close,
+.auth-close,
+.close-modal-btn,
+.achievements-modal-close {
+    border-color: rgba(246, 199, 94, 0.18);
+}
+
+.login-btn:hover,
+.cancel-btn:hover,
+.qs-reset-btn:hover,
+.home-expand-btn:hover,
+.settings-nav-item:hover,
+.gb-sort-btn:hover,
+.quest-modal-close:hover,
+.auth-close:hover,
+.close-modal-btn:hover,
+.achievements-modal-close:hover {
+    background: rgba(246, 199, 94, 0.1);
+    border-color: rgba(246, 199, 94, 0.42);
+    color: #fff4d4;
+}
+
+.settings-nav-item.active,
+.auth-tab.active,
+.am-tab.active,
+.fm-tab.active,
+.gb-sort-btn.active,
+.friend-list-item.active,
+.fm-friend.active {
+    background: rgba(246, 199, 94, 0.12);
+    border-color: rgba(246, 199, 94, 0.32);
+    color: #fff4d4;
+}
+
+.am-tab.active::after,
+.fm-tab.active::after {
+    background: linear-gradient(90deg, var(--gold-bright), var(--gold));
+}
+
+.filters-sidebar,
+.leaderboard-table,
+.quests-sidebar,
+.quests-filters,
+.quest-card,
+.settings-sidebar,
+.settings-section,
+.friends-sidebar,
+.profile-card,
+.profile-main-card,
+.challenges-sidebar,
+.ranks-section,
+.activity-log,
+.guestbook-section,
+.quest-modal-content,
+.auth-modal-content,
+.friends-modal-content,
+.achievements-modal-content,
+.achievement-card,
+.am-card,
+.rank-card,
+.welcome-card,
+.roadmap-item,
+.challenge-card,
+.feature-card {
+    border-color: rgba(246, 199, 94, 0.13);
+}
+
+.quest-card:hover,
+.achievement-card:hover,
+.am-card:hover,
+.rank-card:hover,
+.roadmap-item:hover,
+.challenge-card:hover,
+.feature-card:hover,
+.settings-section:hover,
+.friend-list-item:hover,
+.fm-friend:hover {
+    border-color: rgba(246, 199, 94, 0.32);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.22), 0 0 0 1px rgba(246, 199, 94, 0.06);
+}
+
+.auth-input:focus,
+.add-friend-input:focus,
+.gb-text-input:focus,
+.settings-field input:focus,
+.settings-field textarea:focus,
+#quest-search-input:focus,
+#fm-search:focus {
+    border-color: rgba(246, 199, 94, 0.5);
+    box-shadow: 0 0 0 3px rgba(246, 199, 94, 0.08);
+    outline: none;
+}
+
+.rank,
+.countdown-value,
+.quest-reward-value,
+.am-progress-text,
+.friend-level,
+.profile-level,
+.profile-xp,
+.activity-type,
+.showcase-game-tag,
+.feature-col-num,
+.challenge-title,
+.quest-meta {
+    color: var(--gold-bright);
+}
+
+.achievement-card.legendary::before,
+.am-card.legendary::before,
+.roadmap-item.completed::before,
+.roadmap-item.in-progress::before {
+    background: var(--gold);
+    border-color: var(--gold-bright);
+    box-shadow: 0 0 12px rgba(246, 199, 94, 0.45);
+}
+
+.roadmap-item.in-progress .roadmap-status {
+    background: rgba(246, 199, 94, 0.12);
+    color: var(--gold-bright);
+}
+
+.quest-option:hover {
+    border-color: rgba(246, 199, 94, 0.45);
+}
+
+.quest-option.selected,
+.quest-option.correct {
+    border-color: var(--gold);
+    color: #fff4d4;
+}
+
+/* Settings redesign: wider, simpler, no icon-led navigation */
+#settings-page {
+    padding: 56px 0 72px;
+    min-height: calc(100vh - 160px);
+}
+
+#settings-page .container {
+    max-width: 1480px;
+}
+
+#settings-page .settings-header {
+    max-width: 1180px;
+    margin: 0 auto 28px;
+    text-align: left;
+}
+
+#settings-page .settings-header h1 {
+    color: #fff4d4;
+    font-size: 44px;
+    line-height: 1;
+    margin-bottom: 10px;
+}
+
+#settings-page .settings-header p {
+    color: rgba(255, 255, 255, 0.58);
+    font-size: 15px;
+}
+
+#settings-page .settings-content {
+    max-width: 1180px;
+    display: block;
+}
+
+#settings-page .settings-nav {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    margin-bottom: 18px;
+    padding: 6px;
+    border-radius: 10px;
+    background: rgba(0, 0, 0, 0.24);
+    border-color: rgba(246, 199, 94, 0.16);
+    position: static;
+}
+
+#settings-page .settings-nav-item {
+    justify-content: center;
+    margin: 0;
+    padding: 13px 18px;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 750;
+    text-align: center;
+}
+
+#settings-page .settings-nav-icon {
+    display: none;
+}
+
+#settings-page .settings-nav-item.active {
+    background: rgba(246, 199, 94, 0.14);
+    border-color: rgba(246, 199, 94, 0.32);
+    color: #fff4d4;
+}
+
+#settings-page .settings-panels {
+    width: 100%;
+}
+
+#settings-page .settings-section {
+    padding: 42px;
+    border-radius: 10px;
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.045), rgba(0, 0, 0, 0.22));
+    border-color: rgba(246, 199, 94, 0.16);
+    margin-bottom: 0;
+}
+
+#settings-page .settings-section h3 {
+    font-size: 28px;
+    margin-bottom: 8px;
+}
+
+#settings-page .settings-section-hint {
+    max-width: 640px;
+    margin: 0 0 28px;
+    font-size: 14px;
+}
+
+#settings-page .settings-block {
+    display: grid;
+    grid-template-columns: minmax(220px, 300px) minmax(0, 1fr);
+    gap: 34px;
+    padding: 28px 0;
+    border-top-color: rgba(246, 199, 94, 0.12);
+}
+
+#settings-page .settings-block:first-of-type {
+    padding-top: 0;
+}
+
+#settings-page .settings-block-title {
+    font-size: 16px;
+    margin-bottom: 8px;
+}
+
+#settings-page .settings-block-desc {
+    font-size: 13px;
+    max-width: 260px;
+    margin-bottom: 0;
+}
+
+#settings-page .settings-avatar-row {
+    margin: 0;
+    gap: 24px;
+}
+
+#settings-page .current-profile-pic {
+    width: 112px;
+    height: 112px;
+    border-radius: 14px;
+    border-color: rgba(246, 199, 94, 0.24);
+    color: #fff4d4;
+    font-size: 26px;
+    font-weight: 850;
+    letter-spacing: 0.04em;
+    background: linear-gradient(145deg, rgba(246, 199, 94, 0.12), rgba(255, 255, 255, 0.045));
+}
+
+#settings-page .settings-avatar-actions {
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+#settings-page .settings-avatar-hint {
+    flex-basis: 100%;
+    margin-top: 2px;
+    font-size: 12px;
+}
+
+#settings-page .settings-field {
+    margin-bottom: 20px;
+}
+
+#settings-page .settings-field input[type="text"],
+#settings-page .settings-field textarea,
+#settings-page .auth-input {
+    padding: 14px 16px;
+    border-radius: 8px;
+    font-size: 15px;
+    background: rgba(255, 255, 255, 0.075);
+}
+
+#settings-page .settings-field textarea {
+    min-height: 150px;
+}
+
+#settings-page .setting-item {
+    margin-bottom: 0;
+}
+
+#settings-page .settings-fav-grid {
+    gap: 12px;
+}
+
+#settings-page .save-buttons {
+    max-width: 1180px;
+    justify-content: flex-end;
+    margin: 22px auto 0;
+    gap: 10px;
+}
+
+#settings-page .save-btn,
+#settings-page .cancel-btn,
+#settings-page .upload-pic-btn,
+#settings-page .remove-pic-btn,
+#settings-page .danger-btn {
+    min-height: 42px;
+    border-radius: 8px;
+    padding: 0 22px;
+    font-size: 14px;
+}
+
+@media (max-width: 900px) {
+    #settings-page .settings-block {
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+
+    #settings-page .settings-nav {
+        grid-template-columns: 1fr;
+    }
+
+    #settings-page .settings-section {
+        padding: 28px 22px;
+    }
+
+    #settings-page .save-buttons {
+        justify-content: stretch;
+    }
+
+    #settings-page .save-btn,
+    #settings-page .cancel-btn {
+        flex: 1;
+    }
+}
+
+/* Settings compact two-column correction */
+#settings-page {
+    padding: 44px 0 62px;
+}
+
+#settings-page .container {
+    max-width: 1200px;
+}
+
+#settings-page .settings-header {
+    max-width: 940px;
+    margin: 0 auto 26px;
+    text-align: left;
+}
+
+#settings-page .settings-header h1 {
+    font-size: 38px;
+    margin-bottom: 8px;
+}
+
+#settings-page .settings-header p {
+    font-size: 14px;
+}
+
+#settings-page .settings-content {
+    max-width: 940px;
+    margin: 0 auto;
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+#settings-page .settings-nav {
+    width: 230px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    flex-shrink: 0;
+    margin: 0;
+    padding: 10px;
+    border-radius: 10px;
+    position: sticky;
+    top: 88px;
+    background: rgba(0, 0, 0, 0.28);
+    border: 1px solid rgba(246, 199, 94, 0.14);
+}
+
+#settings-page .settings-nav-item {
+    justify-content: flex-start;
+    text-align: left;
+    padding: 11px 13px;
+    min-height: 42px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+#settings-page .settings-panels {
+    flex: 1;
+    min-width: 0;
+}
+
+#settings-page .settings-section {
+    padding: 28px;
+    border-radius: 10px;
+    margin: 0;
+    background: rgba(0, 0, 0, 0.28);
+}
+
+#settings-page .settings-section h3 {
+    font-size: 24px;
+    margin: 0 0 6px;
+}
+
+#settings-page .settings-section-hint {
+    max-width: none;
+    margin: 0 0 22px;
+    font-size: 13px;
+}
+
+#settings-page .settings-block {
+    display: block;
+    padding: 20px 0;
+    border-top: 1px solid rgba(246, 199, 94, 0.1);
+}
+
+#settings-page .settings-block:first-of-type {
+    padding-top: 0;
+}
+
+#settings-page .settings-block-title {
+    font-size: 15px;
+    margin-bottom: 5px;
+}
+
+#settings-page .settings-block-desc {
+    max-width: none;
+    margin-bottom: 14px;
+    font-size: 12px;
+}
+
+#settings-page .settings-avatar-row {
+    gap: 16px;
+    align-items: center;
+}
+
+#settings-page .current-profile-pic {
+    width: 86px;
+    height: 86px;
+    border-radius: 12px;
+    font-size: 22px;
+}
+
+#settings-page .settings-avatar-actions {
+    display: grid;
+    grid-template-columns: minmax(150px, 1fr) 110px;
+    gap: 8px;
+    align-items: center;
+}
+
+#settings-page .settings-avatar-hint {
+    grid-column: 1 / -1;
+    font-size: 11px;
+}
+
+#settings-page .settings-field {
+    margin-bottom: 16px;
+}
+
+#settings-page .settings-field label,
+#settings-page .setting-item label {
+    font-size: 12px;
+    margin-bottom: 7px;
+}
+
+#settings-page .settings-field input[type="text"],
+#settings-page .settings-field textarea,
+#settings-page .auth-input {
+    padding: 12px 14px;
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+#settings-page .settings-field textarea {
+    min-height: 112px;
+}
+
+#settings-page .settings-field-hint {
+    font-size: 11px;
+}
+
+#settings-page .settings-fav-grid {
+    grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+    gap: 10px;
+}
+
+#settings-page .save-buttons {
+    max-width: 940px;
+    margin: 18px auto 0;
+    justify-content: flex-end;
+}
+
+#settings-page .save-btn,
+#settings-page .cancel-btn,
+#settings-page .upload-pic-btn,
+#settings-page .remove-pic-btn,
+#settings-page .danger-btn {
+    min-height: 38px;
+    padding: 0 18px;
+    font-size: 13px;
+    border-radius: 8px;
+}
+
+@media (max-width: 900px) {
+    #settings-page .settings-header,
+    #settings-page .settings-content,
+    #settings-page .save-buttons {
+        max-width: none;
+    }
+
+    #settings-page .settings-content {
+        flex-direction: column;
+    }
+
+    #settings-page .settings-nav {
+        width: 100%;
+        position: static;
+    }
+
+    #settings-page .settings-avatar-actions {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Readability pass: slightly larger internal pages */
+body {
+    font-size: 16px;
+}
+
+.nav-links a {
+    font-size: 14px;
+}
+
+.leaderboard-page,
+.quests-page,
+.profile-page,
+.settings-page {
+    font-size: 16px;
+}
+
+.section-title,
+.settings-header h1,
+.profile-name {
+    letter-spacing: 0;
+}
+
+.leaderboard-table,
+.filters-sidebar,
+.quests-filters,
+.quest-card,
+.settings-section,
+.profile-card,
+.profile-main-card,
+.challenges-sidebar,
+.friends-sidebar,
+.guestbook-section {
+    font-size: 15px;
+}
+
+.filter-option,
+.quests-filters .filter-option,
+.quest-meta,
+.settings-section-hint,
+.settings-block-desc,
+.settings-field-hint,
+.friend-sub,
+.achievement-desc,
+.feature-col-desc {
+    font-size: 13px;
+}
+
+.settings-field label,
+.setting-item label,
+.auth-label,
+.filter-group h4,
+.quests-filters .filter-group h4 {
+    font-size: 14px;
+}
+
+.settings-field input[type="text"],
+.settings-field textarea,
+.setting-item input[type="text"],
+.setting-item input[type="number"],
+.setting-item textarea,
+.setting-item select,
+.auth-input,
+#quest-search-input,
+#fm-search,
+.add-friend-input,
+.gb-text-input {
+    font-size: 15px;
+}
+
+button,
+.play-quest-btn,
+.save-btn,
+.cancel-btn,
+.settings-nav-item,
+.auth-submit,
+.upload-pic-btn,
+.remove-pic-btn {
+    font-size: 14px;
+}
+
+.quest-title,
+.settings-block-title,
+.achievement-name,
+.friend-name,
+.stats-section-title {
+    font-size: 16px;
+}
+
+#settings-page .settings-content,
+#settings-page .settings-header,
+#settings-page .save-buttons {
+    max-width: 1020px;
+}
+
+#settings-page .settings-nav {
+    width: 250px;
+}
+
+#settings-page .settings-section {
+    padding: 32px;
+}
+
+@media (min-width: 1100px) {
+    .container {
+        max-width: 1500px;
+        padding-left: 28px;
+        padding-right: 28px;
+    }
+
+    .home-section,
+    .quest-showcase,
+    .site-features,
+    .leaderboard-page,
+    .quests-page,
+    .profile-page,
+    .settings-page {
+        font-size: 17px;
+    }
+
+    .nav-links a {
+        font-size: 15px;
+    }
+
+    .hero p,
+    .showcase-subtitle,
+    .feature-col-desc,
+    .quest-meta,
+    .challenge-desc,
+    .settings-section-hint,
+    .settings-block-desc,
+    .friend-sub,
+    .fav-game-stats,
+    .genre-value,
+    .gb-msg-handle,
+    .gb-msg-time {
+        font-size: 14px;
+        line-height: 1.55;
+    }
+
+    .profile-layout {
+        width: 100%;
+        max-width: none;
+        margin: 0;
+        gap: 28px;
+    }
+
+    .friends-sidebar {
+        width: 320px;
+        padding: 24px;
+    }
+
+    .challenges-sidebar {
+        width: 360px;
+        padding: 26px;
+    }
+
+    .profile-main-card {
+        min-width: 0;
+        padding: 34px;
+    }
+
+    .friends-sidebar h3,
+    .challenges-sidebar h3,
+    .section-title,
+    .guestbook-section h3 {
+        font-size: 22px;
+    }
+
+    .profile-name {
+        font-size: 34px;
+    }
+
+    .profile-level,
+    .profile-xp {
+        font-size: 16px;
+    }
+
+    #profile-bio {
+        font-size: 16px !important;
+        line-height: 1.65 !important;
+    }
+
+    .friend-name,
+    .fav-game-name,
+    .achievement-name,
+    .rank-name,
+    .stats-section-title {
+        font-size: 15px;
+    }
+
+    .friend-sub {
+        font-size: 13px;
+    }
+
+    .achievement-desc,
+    .rank-desc,
+    .achievement-rarity-label {
+        font-size: 12px;
+        line-height: 1.4;
+    }
+
+    .achievement-card {
+        padding: 18px 14px;
+        min-height: 150px;
+    }
+
+    .achievement-icon {
+        width: 48px;
+        height: 48px;
+        font-size: 22px;
+    }
+
+    .rank-card {
+        padding: 16px 12px;
+        min-height: 112px;
+    }
+
+    .fav-game {
+        gap: 12px;
+        padding: 9px 0;
+    }
+
+    .fav-game-icon {
+        width: 38px;
+        height: 38px;
+    }
+
+    .genre-name {
+        min-width: 96px;
+        font-size: 13px;
+    }
+
+    .gb-msg-name,
+    .gb-msg-text {
+        font-size: 16px;
+    }
+
+    .gb-msg-avatar,
+    .gb-composer-avatar {
+        width: 48px;
+        height: 48px;
+    }
+}
+
+/* Profile logout button */
+.profile-logout-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 18px;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 10px;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: inherit;
+    align-self: flex-start;
+    flex-shrink: 0;
+}
+
+.profile-logout-btn:hover {
+    background: rgba(255, 80, 80, 0.12);
+    border-color: rgba(255, 80, 80, 0.4);
+    color: #fff;
+}
+
+.account-btn {
+    padding: 7px 16px;
+    background: rgba(255, 255, 255, 0.95);
+    border: none;
+    border-radius: 8px;
+    color: #000;
+    font-weight: 700;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: inherit;
+}
+
+.account-btn:hover {
+    background: #fff;
+    transform: translateY(-1px);
+}
+
+.account-btn.ghost {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: #fff;
+}
+
+.account-btn.ghost:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.account-user {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    padding: 6px 12px 6px 6px;
+    border-radius: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.05);
+    transition: all 0.2s;
+    position: relative;
+}
+
+.account-user:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.account-user-avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    flex-shrink: 0;
+    overflow: hidden;
+}
+
+.account-user-name {
+    color: #fff;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.account-menu {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 12px;
+    min-width: 200px;
+    padding: 8px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    display: none;
+    z-index: 1500;
+}
+
+.account-menu.open { display: block; }
+
+.account-menu-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+    color: #fff;
+    font-size: 13px;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: background 0.15s;
+    background: transparent;
+    border: none;
+    width: 100%;
+    text-align: left;
+    font-family: inherit;
+}
+
+.account-menu-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.account-menu-divider {
+    height: 1px;
+    background: rgba(255, 255, 255, 0.1);
+    margin: 6px 0;
+}
+
+/* Auth modal */
+.auth-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(10px);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 3000;
+    animation: fadeIn 0.3s ease;
+    padding: 20px;
+}
+
+.auth-modal.active { display: flex; }
+
+.auth-modal-content {
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    width: 100%;
+    max-width: 420px;
+    overflow: hidden;
+    animation: slideUp 0.3s ease;
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.4);
+}
+
+.auth-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 22px 26px 0;
+}
+
+.auth-header h2 {
+    color: #fff;
+    font-size: 22px;
+    font-weight: 700;
+    margin: 0;
+}
+
+.auth-close {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: rgba(255, 255, 255, 0.7);
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    transition: all 0.2s;
+}
+
+.auth-tabs {
+    display: flex;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    margin: 18px 0 0;
+    padding: 0 26px;
+}
+
+.auth-tab {
+    background: transparent;
+    border: none;
+    color: rgba(255, 255, 255, 0.55);
+    padding: 12px 4px;
+    margin-right: 20px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    position: relative;
+    transition: color 0.2s;
+    font-family: inherit;
+}
+
+.auth-tab.active { color: #fff; }
+
+.auth-tab.active::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: #fff;
+    border-radius: 3px 3px 0 0;
+}
+
+.auth-body { padding: 22px 26px 26px; }
+
+.auth-form {
+    display: none;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.auth-form.active { display: flex; }
+
+.auth-field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.auth-label {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.auth-input {
+    padding: 11px 14px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 10px;
+    color: #fff;
+    font-size: 14px;
+    outline: none;
+    transition: all 0.2s;
+    font-family: inherit;
+}
+
+.auth-input:focus {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+.auth-input::placeholder {
+    color: rgba(255, 255, 255, 0.35);
+}
+
+/* Password toggle */
+.auth-password-wrap {
+    position: relative;
+    display: flex;
+}
+
+.auth-password-wrap .auth-input {
+    flex: 1;
+    padding-right: 42px;
+}
+
+.auth-pw-toggle {
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 16px;
+    cursor: pointer;
+    padding: 6px;
+    border-radius: 6px;
+    transition: color 0.15s;
+    font-family: inherit;
+}
+
+.auth-pw-toggle:hover {
+    color: #fff;
+}
+
+.auth-forgot {
+    text-align: right;
+    margin-top: 4px;
+}
+
+.auth-forgot a {
+    color: rgba(255, 255, 255, 0.55);
+    font-size: 12px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.auth-forgot a:hover {
+    color: #fff;
+    text-decoration: underline;
+}
+
+.auth-error {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 12px;
+    padding: 8px 12px;
+    background: rgba(255, 50, 50, 0.15);
+    border: 1px solid rgba(255, 80, 80, 0.4);
+    border-radius: 8px;
+    display: none;
+}
+
+.auth-error.show { display: block; }
+
+.auth-success {
+    color: rgba(255, 255, 255, 0.95);
+    font-size: 12px;
+    padding: 8px 12px;
+    background: rgba(50, 200, 100, 0.15);
+    border: 1px solid rgba(80, 220, 120, 0.4);
+    border-radius: 8px;
+    display: none;
+}
+
+.auth-success.show { display: block; }
+
+.auth-submit {
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.95);
+    border: none;
+    border-radius: 10px;
+    color: #000;
+    font-weight: 700;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-top: 4px;
+    font-family: inherit;
+}
+
+.auth-submit:hover {
+    background: #fff;
+    transform: translateY(-1px);
+}
+
+.auth-submit:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.auth-switch {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 13px;
+    text-align: center;
+}
+
+.auth-switch a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.auth-switch a:hover { text-decoration: underline; }
+/* ===== END AUTH ===== */
+
