@@ -1,0 +1,312 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scrollbar-gutter: stable;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #0d1117;
+    background-image: url('../assets/images/background.png');
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    color: #fff;
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+}
+
+html.modal-scroll-lock,
+body.modal-scroll-lock {
+    overflow: hidden;
+    height: 100%;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        180deg,
+        rgba(8, 12, 18, 0.45) 0%,
+        rgba(8, 12, 18, 0.3) 50%,
+        rgba(8, 12, 18, 0.5) 100%
+    );
+    pointer-events: none;
+    z-index: 1;
+}
+
+.container {
+    position: relative;
+    z-index: 2;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+header {
+    padding: 20px 0;
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    position: relative;
+    z-index: 100;
+    pointer-events: auto;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 38px;
+    position: relative;
+}
+
+.logo {
+    font-size: 28px;
+    font-weight: bold;
+    color: #fff;
+    line-height: 38px;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    list-style: none;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.nav-links a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 38px;
+    color: rgba(255, 255, 255, 0.5);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.25s;
+    cursor: pointer;
+    position: relative;
+    z-index: 10;
+    padding: 2px 4px;
+}
+
+.nav-links a:hover {
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.nav-links a.active {
+    color: #ffffff;
+    font-weight: 700;
+}
+
+.nav-links a.active::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -6px;
+    height: 2px;
+    background: #ffffff;
+    border-radius: 2px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
+}
+
+.header-player-stats {
+    display: none;
+    align-items: center;
+    gap: 10px;
+    height: 34px;
+    margin-left: auto;
+    padding: 0 13px;
+    border: 1px solid rgba(255, 255, 255, 0.28);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.08);
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.18);
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: 800;
+    line-height: 1;
+    position: relative;
+    z-index: 12;
+}
+
+.header-player-stats.show {
+    display: inline-flex;
+}
+
+.header-player-stats[hidden] {
+    display: none !important;
+}
+
+.header-stat {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 4px;
+    white-space: nowrap;
+}
+
+.header-stat-label {
+    color: rgba(255, 255, 255, 0.68);
+    font-size: 11px;
+    text-transform: uppercase;
+}
+
+.header-stat-sep {
+    width: 1px;
+    height: 14px;
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.login-btn {
+    padding: 8px 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.login-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+@media (max-width: 760px) {
+    .header-player-stats {
+        display: none !important;
+    }
+}
+
+
+/* Hero row: hero on left, season card on right */
+.hero-row {
+    display: grid;
+    grid-template-columns: 1fr 360px;
+    gap: 30px;
+    align-items: stretch;
+    padding: 40px 0 30px;
+}
+
+@media (max-width: 900px) {
+    .hero-row {
+        grid-template-columns: 1fr;
+    }
+}
+
+.hero {
+    padding: 0;
+    text-align: left;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.hero h1 {
+    font-size: 44px;
+    margin-bottom: 18px;
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+    line-height: 1.1;
+}
+
+.hero p {
+    font-size: 15px;
+    line-height: 1.6;
+    max-width: 560px;
+    margin: 0 0 28px;
+    color: #ccc;
+}
+
+.hero-actions {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    justify-content: flex-start;
+    margin-top: 0;
+    flex-wrap: wrap;
+}
+
+/* Season banner — vertical card on the right */
+.season-banner {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0.03) 100%);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 14px;
+    padding: 20px 22px;
+    margin: 0;
+    max-width: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: stretch;
+    flex-wrap: nowrap;
+}
+
+.season-banner-top {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.season-banner-icon {
+    font-size: 24px;
+    flex-shrink: 0;
+}
+
+.season-banner-title {
+    color: #fff;
+    font-size: 15px;
+    font-weight: 700;
+    margin: 0;
+}
+
+.season-banner-desc {
+    color: rgba(255, 255, 255, 0.55);
+    font-size: 12px;
+    line-height: 1.5;
+    margin: 0;
+}
+
+.season-countdown {
+    display: flex;
+    gap: 6px;
+    margin-top: auto;
+    padding-top: 6px;
+}
+
+.countdown-box {
+    background: rgba(0, 0, 0, 0.35);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 8px;
+    flex: 1;
+    text-align: center;
+}
+
+.countdown-value {
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.countdown-label {
+    color: rgba(255, 255, 255, 0.45);
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    margin-top: 3px;
+}
+
